@@ -2,7 +2,7 @@
 
 Instructor: [Andrew Ng](http://www.andrewng.org/)
 
-Programming assignments and quizzes from all courses in the Coursera Deep Learning specialization.
+Notes, programming assignments and quizzes from all courses in the Coursera Deep Learning specialization.
 
 ## Setup
 
