@@ -1,8 +1,8 @@
 # Deep Learning Specialization on Coursera
 
-Instructor: [Andrew Ng](http://www.andrewng.org/)
-
 Notes, programming assignments and quizzes from all courses in the Coursera Deep Learning specialization.
+
+Instructor: [Andrew Ng](http://www.andrewng.org/)
 
 ## Setup
 
