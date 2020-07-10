@@ -10,7 +10,7 @@ Run ```setup.sh``` to (i) download a pre-trained VGG-19 dataset and (ii) extract
 
 ## Credits
 
-This repo contains my work for this specialization. The code base, quiz questions, screenshots, and images are taken from the [Deep Learning Specialization on Coursera](https://www.coursera.org/specializations/deep-learning), unless specified otherwise.
+This repo contains my work for this specialization. The code base, quiz questions and diagrams are taken from the [Deep Learning Specialization on Coursera](https://www.coursera.org/specializations/deep-learning), unless specified otherwise.
 
 ## Programming Assignments
 
