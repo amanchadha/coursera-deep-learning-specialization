@@ -18,6 +18,8 @@ Instructor: [Andrew Ng](http://www.andrewng.org/)
 `git clone <repo_path>`
 4. Run ```setup.sh``` to (i) download a pre-trained VGG-19 dataset and (ii) extract the zip'd pre-trained models and datasets that are needed for all the assignments.
 
+Note that if you `git clone`'d before installing `git-lfs` (which downloaded only pointers to lfs files), install `git-lfs` and then run `git lfs pull`.
+
 ## Credits
 
 This repo contains my work for this specialization. The code base, quiz questions and diagrams are taken from the [Deep Learning Specialization on Coursera](https://www.coursera.org/specializations/deep-learning), unless specified otherwise.
