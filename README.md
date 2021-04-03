@@ -8,9 +8,15 @@ Instructor: [Andrew Ng](http://www.andrewng.org/)
 
 ### For detailed interview-ready notes on all courses in the Coursera Deep Learning specialization, refer [www.aman.ai](https://aman.ai/).
 
-## Setup
+## Cloning Instructions
 
-Run ```setup.sh``` to (i) download a pre-trained VGG-19 dataset and (ii) extract the zip'd pre-trained models and datasets that are needed for all the assignments.
+1. `git-lfs` is used to handle large dataset files in this repo. As such, please make sure `git-lfs` is installed before cloning this repo. 
+2. Steps to install `git-lfs`:
+`curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash`
+`sudo apt-get install git-lfs`
+3. Clone repo:
+`git clone <repo_path>`
+4. Run ```setup.sh``` to (i) download a pre-trained VGG-19 dataset and (ii) extract the zip'd pre-trained models and datasets that are needed for all the assignments.
 
 ## Credits
 
