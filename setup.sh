@@ -1,5 +1,5 @@
-# aman@amanchadha.com
-# www.amanchadha.com
+# Aman Chadha / aman@amanchadha.com
+# www.amanchadha.com / www.aman.ai
 
 # extract all the zip'd pre-trained models and datasets
 find . -name "*.zip" | while read filename; do unzip -o -d "`dirname "$filename"`" "$filename"; done;
