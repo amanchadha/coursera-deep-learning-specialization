@@ -8,17 +8,9 @@ Instructor: [Andrew Ng](http://www.andrewng.org/)
 
 ### For detailed interview-ready notes on all courses in the Coursera Deep Learning specialization, refer [www.aman.ai](https://aman.ai/).
 
-## Cloning Instructions
+## Setup
 
-1. `git-lfs` is used to handle large dataset files in this repo. As such, please make sure `git-lfs` is installed before cloning this repo. 
-2. Steps to install `git-lfs`:
-`curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash`
-`sudo apt-get install git-lfs`
-3. Clone repo:
-`git clone <repo_path>`
-4. Run ```setup.sh``` to (i) download a pre-trained VGG-19 dataset and (ii) extract the zip'd pre-trained models and datasets that are needed for all the assignments.
-
-Note that if you `git clone`'d before installing `git-lfs` (which downloaded only pointers to lfs files), install `git-lfs` and then run `git lfs pull`.
+Run ```setup.sh``` to (i) download a pre-trained VGG-19 dataset and (ii) extract the zip'd pre-trained models and datasets that are needed for all the assignments.
 
 ## Credits
 
@@ -99,9 +91,6 @@ This repo contains my work for this specialization. The code base, quiz question
   - Week 2 Quiz - Natural Language Processing & Word Embeddings: [PDF](https://nbviewer.jupyter.org/github/amanchadha/coursera-deep-learning-specialization/blob/master/C5%20-%20Sequence%20Models/Week%202/Week%202%20Quiz%20-%20Natural%20Language%20Processing%20%26%20Word%20Embeddings.pdf)
   - Week 3 Quiz - Sequence models & Attention mechanism: [Text](https://nbviewer.jupyter.org/github/amanchadha/coursera-deep-learning-specialization/blob/master/C5%20-%20Sequence%20Models/Week%203/Week%203%20Quiz%20-%20Sequence%20models%20%26%20Attention%20mechanisms.md) | [PDF](https://nbviewer.jupyter.org/github/amanchadha/coursera-deep-learning-specialization/blob/master/C5%20-%20Sequence%20Models/Week%203/Week%203%20Quiz%20-%20Sequence%20models%20%26%20Attention%20mechanisms.pdf)
 
-## (Unofficial) lecture notes
-Credits to [Mahmoud Badry](https://github.com/mbadry1) for the unofficial lecture notes. 
-
 ## Disclaimer
 
-I recognize the hard time people spend on building intuition, understanding new concepts and debugging assignments. The solutions uploaded here are **only for reference**. They are meant to unblock you if you get stuck somewhere. I hope you don't copy any part of the code as-is (the programming assignments are fairly easy if you read the instructions carefully). Similarly, try out the quizzes yourself before you refer to the quiz solutions. This course is the most straight-forward deep learning course I have ever taken, with fabulous course content and structure. It's a treasure by the deeplearning.ai team.
+I recognize the hard time people spend on building intuition, understanding new concepts and debugging assignments. The solutions uploaded here are **only for reference**. They are meant to unblock you if you get stuck somewhere. Please do not copy any part of the code as-is (the programming assignments are fairly easy if you read the instructions carefully). Similarly, try out the quizzes yourself before you refer to the quiz solutions. This course is the most straight-forward deep learning course I have ever taken, with fabulous course content and structure. It's a treasure by the `deeplearning.ai` team.
