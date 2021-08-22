@@ -10,7 +10,9 @@ Instructor: [Andrew Ng](http://www.andrewng.org/)
 
 ## Setup
 
-Run ```setup.sh``` to (i) download a pre-trained VGG-19 dataset and (ii) extract the zip'd pre-trained models and datasets that are needed for all the assignments.
+Run ```setup.sh``` to (i) download a pre-trained VGG-19 dataset and (ii) extract the zip'd pre-trained models and datasets that are needed for all the assignments by doing:
+- `chmod +x setup.sh`
+- `./setup.sh`
 
 ## Credits
 
