@@ -3,12 +3,13 @@ from faker import Faker
 import random
 from tqdm import tqdm
 from babel.dates import format_date
-from keras.utils import to_categorical
-import keras.backend as K
+from tensorflow.keras.utils import to_categorical
+import tensorflow.keras.backend as K
+from tensorflow.keras.models import Model
 import matplotlib.pyplot as plt
 
 fake = Faker()
-fake.seed(12345)
+Faker.seed(12345)
 random.seed(12345)
 
 # Define format of the data we would like to generate
@@ -93,6 +94,8 @@ def preprocess_data(dataset, human_vocab, machine_vocab, Tx, Ty):
     
     Xoh = np.array(list(map(lambda x: to_categorical(x, num_classes=len(human_vocab)), X)))
     Yoh = np.array(list(map(lambda x: to_categorical(x, num_classes=len(machine_vocab)), Y)))
+
+
 
     return X, np.array(Y), Xoh, Yoh
 
@@ -180,33 +183,68 @@ def softmax(x, axis=1):
         raise ValueError('Cannot apply softmax to a tensor that is 1D')
         
 
-def plot_attention_map(model, input_vocabulary, inv_output_vocabulary, text, n_s = 128, num = 6, Tx = 30, Ty = 10):
+def plot_attention_map(modelx, input_vocabulary, inv_output_vocabulary, text, n_s = 128, num = 7):
     """
     Plot the attention map.
   
     """
     attention_map = np.zeros((10, 30))
+    layer = modelx.get_layer('attention_weights')
+
     Ty, Tx = attention_map.shape
     
+    human_vocab_size = 37
+    
+    # Well, this is cumbersome but this version of tensorflow-keras has a bug that affects the 
+    # reuse of layers in a model with the functional API. 
+    # So, I have to recreate the model based on the functional 
+    # components and connect then one by one.
+    # ideally it can be done simply like this:
+    # layer = modelx.layers[num]
+    # f = Model(modelx.inputs, [layer.get_output_at(t) for t in range(Ty)])
+    #
+    
+    X = modelx.inputs[0] 
+    s0 = modelx.inputs[1] 
+    c0 = modelx.inputs[2] 
+    s = s0
+    c = s0
+    
+    a = modelx.layers[2](X)  
+    outputs = []
+
+    for t in range(Ty):
+        s_prev = s
+        s_prev = modelx.layers[3](s_prev)
+        concat = modelx.layers[4]([a, s_prev]) 
+        e = modelx.layers[5](concat) 
+        energies = modelx.layers[6](e) 
+        alphas = modelx.layers[7](energies) 
+        context = modelx.layers[8]([alphas, a])
+        # Don't forget to pass: initial_state = [hidden state, cell state] (≈ 1 line)
+        s, _, c = modelx.layers[10](context, initial_state = [s, c]) 
+        outputs.append(energies)
+
+    f = Model(inputs=[X, s0, c0], outputs = outputs)
+    
+
     s0 = np.zeros((1, n_s))
     c0 = np.zeros((1, n_s))
-    layer = model.layers[num]
-
     encoded = np.array(string_to_int(text, Tx, input_vocabulary)).reshape((1, 30))
     encoded = np.array(list(map(lambda x: to_categorical(x, num_classes=len(input_vocabulary)), encoded)))
 
-    f = K.function(model.inputs, [layer.get_output_at(t) for t in range(Ty)])
-    r = f([encoded, s0, c0])
     
+    r = f([encoded, s0, c0])
+        
     for t in range(Ty):
         for t_prime in range(Tx):
-            attention_map[t][t_prime] = r[t][0,t_prime,0]
+            attention_map[t][t_prime] = r[t][0, t_prime]
 
     # Normalize attention map
-#     row_max = attention_map.max(axis=1)
-#     attention_map = attention_map / row_max[:, None]
+    row_max = attention_map.max(axis=1)
+    attention_map = attention_map / row_max[:, None]
 
-    prediction = model.predict([encoded, s0, c0])
+    prediction = modelx.predict([encoded, s0, c0])
     
     predicted_text = []
     for i in range(len(prediction)):

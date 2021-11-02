@@ -1,36 +1,37 @@
 from music_utils import * 
 from preprocess import * 
-from keras.utils import to_categorical
+from tensorflow.keras.utils import to_categorical
 
-chords, abstract_grammars = get_musical_data('data/original_metheny.mid')
-corpus, tones, tones_indices, indices_tones = get_corpus_data(abstract_grammars)
-N_tones = len(set(corpus))
+from collections import defaultdict
+from mido import MidiFile
+from pydub import AudioSegment
+from pydub.generators import Sine
+import math
+
+#chords, abstract_grammars = get_musical_data('data/original_metheny.mid')
+#corpus, tones, tones_indices, indices_tones = get_corpus_data(abstract_grammars)
+#N_tones = len(set(corpus))
 n_a = 64
-x_initializer = np.zeros((1, 1, 78))
+x_initializer = np.zeros((1, 1, 90))
 a_initializer = np.zeros((1, n_a))
 c_initializer = np.zeros((1, n_a))
 
-def load_music_utils():
-    chords, abstract_grammars = get_musical_data('data/original_metheny.mid')
+def load_music_utils(file):
+    chords, abstract_grammars = get_musical_data(file)
     corpus, tones, tones_indices, indices_tones = get_corpus_data(abstract_grammars)
     N_tones = len(set(corpus))
     X, Y, N_tones = data_processing(corpus, tones_indices, 60, 30)   
-    return (X, Y, N_tones, indices_tones)
+    return (X, Y, N_tones, indices_tones, chords)
 
 
-def generate_music(inference_model, corpus = corpus, abstract_grammars = abstract_grammars, tones = tones, tones_indices = tones_indices, indices_tones = indices_tones, T_y = 10, max_tries = 1000, diversity = 0.5):
+def generate_music(inference_model, indices_tones, chords, diversity = 0.5):
     """
     Generates music using a model trained to learn musical patterns of a jazz soloist. Creates an audio stream
     to save the music and play it.
     
     Arguments:
     model -- Keras model Instance, output of djmodel()
-    corpus -- musical corpus, list of 193 tones as strings (ex: 'C,0.333,<P1,d-5>')
-    abstract_grammars -- list of grammars, on element can be: 'S,0.250,<m2,P-4> C,0.250,<P4,m-2> A,0.250,<P4,m-2>'
-    tones -- set of unique tones, ex: 'A,0.250,<M2,d-4>' is one element of the set.
-    tones_indices -- a python dictionary mapping unique tone (ex: A,0.250,< m2,P-4 >) into their corresponding indices (0-77)
     indices_tones -- a python dictionary mapping indices (0-77) into their corresponding unique tone (ex: A,0.250,< m2,P-4 >)
-    Tx -- integer, number of time-steps used at training time
     temperature -- scalar value, defines how conservative/creative the model is when generating music
     
     Returns:
@@ -132,7 +133,50 @@ def predict_and_sample(inference_model, x_initializer = x_initializer, a_initial
     ### START CODE HERE ###
     pred = inference_model.predict([x_initializer, a_initializer, c_initializer])
     indices = np.argmax(pred, axis = -1)
-    results = to_categorical(indices, num_classes=78)
+    results = to_categorical(indices, num_classes=90)
     ### END CODE HERE ###
     
     return results, indices
+
+
+def note_to_freq(note, concert_A=440.0):
+  '''
+  from wikipedia: http://en.wikipedia.org/wiki/MIDI_Tuning_Standard#Frequency_values
+  '''
+  return (2.0 ** ((note - 69) / 12.0)) * concert_A
+
+def ticks_to_ms(ticks, tempo, mid):
+    tick_ms = math.ceil((60000.0 / tempo) / mid.ticks_per_beat)
+    return ticks * tick_ms
+
+def mid2wav(file):
+    mid = MidiFile(file)
+    output = AudioSegment.silent(mid.length * 1000.0)
+
+    tempo = 130 # bpm
+
+    for track in mid.tracks:
+        # position of rendering in ms
+        current_pos = 0.0
+        current_notes = defaultdict(dict)
+
+        for msg in track:
+            current_pos += ticks_to_ms(msg.time, tempo, mid)
+            if msg.type == 'note_on':
+                if msg.note in current_notes[msg.channel]:
+                    current_notes[msg.channel][msg.note].append((current_pos, msg))
+                else:
+                    current_notes[msg.channel][msg.note] = [(current_pos, msg)]
+
+
+            if msg.type == 'note_off':
+                start_pos, start_msg = current_notes[msg.channel][msg.note].pop()
+
+                duration = math.ceil(current_pos - start_pos)
+                signal_generator = Sine(note_to_freq(msg.note, 500))
+                #print(duration)
+                rendered = signal_generator.to_audio_segment(duration=duration-50, volume=-20).fade_out(100).fade_in(30)
+
+                output = output.overlay(rendered, start_pos)
+
+    output.export("./output/rendered.wav", format="wav")

@@ -3,14 +3,18 @@
 import tensorflow as tf
 import numpy as np
 import os
-import cv2
+#import cv2
 from numpy import genfromtxt
-from keras.layers import Conv2D, ZeroPadding2D, Activation, Input, concatenate
-from keras.models import Model
-from keras.layers.normalization import BatchNormalization
-from keras.layers.pooling import MaxPooling2D, AveragePooling2D
+from tensorflow.keras.layers import Conv2D, ZeroPadding2D, Activation, Input, concatenate
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import BatchNormalization
+from tensorflow.keras.layers import MaxPooling2D, AveragePooling2D
 import h5py
 import matplotlib.pyplot as plt
+import PIL
+from tensorflow.keras import backend as K
+
+K.set_image_data_format('channels_first')
 
 
 _FLOATX = 'float32'
@@ -189,9 +193,11 @@ def load_dataset():
     return train_set_x_orig, train_set_y_orig, test_set_x_orig, test_set_y_orig, classes
 
 def img_to_encoding(image_path, model):
-    img1 = cv2.imread(image_path, 1)
-    img = img1[...,::-1]
+    #img = PIL.Image.open(image_path)
+    img = tf.keras.preprocessing.image.load_img(image_path)
+    #img = img1[...,::-1]
     img = np.around(np.transpose(img, (2,0,1))/255.0, decimals=12)
-    x_train = np.array([img])
+    x_train = np.expand_dims(img, axis=0)
+    print(x_train.shape)
     embedding = model.predict_on_batch(x_train)
     return embedding

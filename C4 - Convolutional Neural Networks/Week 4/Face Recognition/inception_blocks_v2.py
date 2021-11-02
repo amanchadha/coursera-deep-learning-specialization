@@ -2,13 +2,15 @@ import tensorflow as tf
 import numpy as np
 import os
 from numpy import genfromtxt
-from keras import backend as K
-from keras.layers import Conv2D, ZeroPadding2D, Activation, Input, concatenate
-from keras.models import Model
-from keras.layers.normalization import BatchNormalization
-from keras.layers.pooling import MaxPooling2D, AveragePooling2D
+from tensorflow.keras import backend as K
+from tensorflow.keras.layers import Conv2D, ZeroPadding2D, Activation, Input, concatenate
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import BatchNormalization
+from tensorflow.keras.layers import MaxPooling2D, AveragePooling2D
 import fr_utils
-from keras.layers.core import Lambda, Flatten, Dense
+from tensorflow.keras.layers import Lambda, Flatten, Dense
+
+K.set_image_data_format('channels_first')
 
 def inception_block_1a(X):
     """
@@ -227,30 +229,30 @@ def faceRecoModel(input_shape):
     X = ZeroPadding2D((3, 3))(X_input)
     
     # First Block
-    X = Conv2D(64, (7, 7), strides = (2, 2), name = 'conv1')(X)
+    X = Conv2D(64, (7, 7), strides = (2, 2), name = 'conv1', data_format='channels_first')(X)
     X = BatchNormalization(axis = 1, name = 'bn1')(X)
     X = Activation('relu')(X)
     
     # Zero-Padding + MAXPOOL
-    X = ZeroPadding2D((1, 1))(X)
-    X = MaxPooling2D((3, 3), strides = 2)(X)
+    X = ZeroPadding2D((1, 1),data_format='channels_first' )(X)
+    X = MaxPooling2D((3, 3), strides = 2, data_format='channels_first')(X)
     
     # Second Block
-    X = Conv2D(64, (1, 1), strides = (1, 1), name = 'conv2')(X)
+    X = Conv2D(64, (1, 1), strides = (1, 1), name = 'conv2', data_format='channels_first')(X)
     X = BatchNormalization(axis = 1, epsilon=0.00001, name = 'bn2')(X)
     X = Activation('relu')(X)
     
     # Zero-Padding + MAXPOOL
-    X = ZeroPadding2D((1, 1))(X)
+    X = ZeroPadding2D((1, 1), data_format='channels_first')(X)
 
     # Second Block
-    X = Conv2D(192, (3, 3), strides = (1, 1), name = 'conv3')(X)
+    X = Conv2D(192, (3, 3), strides = (1, 1), name = 'conv3', data_format='channels_first')(X)
     X = BatchNormalization(axis = 1, epsilon=0.00001, name = 'bn3')(X)
     X = Activation('relu')(X)
     
     # Zero-Padding + MAXPOOL
-    X = ZeroPadding2D((1, 1))(X)
-    X = MaxPooling2D(pool_size = 3, strides = 2)(X)
+    X = ZeroPadding2D((1, 1), data_format='channels_first')(X)
+    X = MaxPooling2D(pool_size = 3, strides = 2,data_format='channels_first')(X)
     
     # Inception 1: a/b/c
     X = inception_block_1a(X)
