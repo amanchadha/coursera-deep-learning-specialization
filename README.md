@@ -18,7 +18,7 @@ This repo contains my work for this specialization. The code base, quiz question
 
 ## 2021 Version
 
-- This specialization was updated in April 2021 to include developments in deep learning and programming frameworks, with the biggest change being shifting from TensorFlow 1 to TensorFlow 2. This repo has been updated accordingly as well.
+This specialization was updated in April 2021 to include developments in deep learning and programming frameworks, with the biggest change being shifting from TensorFlow 1 to TensorFlow 2. This repo has been updated accordingly as well.
 
 ## Programming Assignments
 
