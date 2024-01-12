@@ -73,7 +73,7 @@
  	> False
   
 
-26. 	If we use anchor boxes in YOLO, we no longer need the cordinates of the bounding box. Since they are given by the cell position of the grid and anchor box selection.
+26. If we use anchor boxes in YOLO, we no longer need the cordinates of the bounding box. Since they are given by the cell position of the grid and anchor box selection.
 
 	 	> False
 
