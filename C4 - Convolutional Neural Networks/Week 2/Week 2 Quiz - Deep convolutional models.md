@@ -116,6 +116,7 @@ a[l+2]=g(W[l+2]g(W[l+1]a[l]+b[l+1])+bl+2+_______ )+_______
 18.When having a small training set to construct a classification model, which of the following is a strategy of transfer learning that you would use to build the model?
 
 	> Use an open-source network trained in larger dataset, freezing the layers, re-train the softmax layer
+ 
 
 20. 1 x 1 convolutions are the same as multiplying by a single number. True/False?
 
