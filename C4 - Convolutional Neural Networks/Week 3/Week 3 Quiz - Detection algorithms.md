@@ -61,11 +61,13 @@
 
 19. When using the U-Net architecture with an input h X w X c,  where c denotes the number of channels, the output will always have the shape h X W  ?
 	> False
- >  The output of the U-Net architecture can be h × w × k, where k is the number of classes. The number of channels doesn't have to match between input and output.
+ 	>  The output of the U-Net architecture can be h × w × k, where k is the number of classes. The number of channels doesn't have to match between input and output.
 
 20. Which of the following do you agree about the use of anchor boxes of YOLO ?
-21. 	> Each object is assigned to the grid cell that contains the object midpoint
-22. 	> Each object is assigned to an anchor box with the highest IoU inside the assigned cell.
+    
+ 	> Each object is assigned to the grid cell that contains the object midpoint
+ 	> Each object is assigned to an anchor box with the highest IoU inside the assigned cell.
+
 23. 	 
 
 
