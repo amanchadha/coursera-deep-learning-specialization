@@ -43,3 +43,19 @@
 
 	> ```30 * 30 * 30 * 32```
 
+11. You are working with 3D data. The input image has 64X64X64X3. if you apply convolution layer with 16 filters of size 4x 4 x 4, zero padding and size 2. What is the out put volume ?
+	> 31 x 31 x 31 x 16
+
+12. In neural style transfer, which of the following better express the gradients used?
+
+     	>  dW/ dG
+14. Neural style transfer uses images Content C, styles S, The loss function used to generate image G is composed of which of the following "
+
+ 	> J(style) that compares S and g.
+  	> J(content) that compares C and G
+16. Triplet los is larger in which of the following cases?
+
+ 	> When the encoding of A is closer to the encoding of N, than to the encoding of P
+18. Which of the folowing do you agree with ?
+    	> It will be more efficient to learn a function d(img1, img2) for this task.
+    	> This can be considered a one-shot learning task
