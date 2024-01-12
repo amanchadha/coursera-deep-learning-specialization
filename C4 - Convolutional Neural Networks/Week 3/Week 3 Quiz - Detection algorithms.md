@@ -68,7 +68,16 @@
  	> Each object is assigned to the grid cell that contains the object midpoint
  	> Each object is assigned to an anchor box with the highest IoU inside the assigned cell.
 
-23. 	 
+23. When trying to build a system that assigns a value of 1 to each pixel that is part of a tumor from a medical image taken from a patient. This is a problem of localisation ?
+    
+ 	> False
+  
+
+26. 	If we use anchor boxes in YOLO, we no longer need the cordinates of the bounding box. Since they are given by the cell position of the grid and anchor box selection.
+
+	 	> False
+
+28. 
 
 
 
