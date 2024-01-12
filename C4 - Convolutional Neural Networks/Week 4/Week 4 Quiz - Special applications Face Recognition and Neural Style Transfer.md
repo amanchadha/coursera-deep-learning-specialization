@@ -60,13 +60,13 @@
     	> It will be more efficient to learn a function d(img1, img2) for this task.
     	> This can be considered a one-shot learning task
 16. Which of the following do you agree with?
-17. 	>  Face recognition requires K comparisons of a persons face
+	>  Face recognition requires K comparisons of a persons face
 18. You want to build a system that receives a person's face picture and determines if the person is inside a workgroup. You have pictures of all the faces of the people currently in the workgroup, but some members might leave, and some new members might be added. To train a system to solve this problem using the triplet loss you must collect pictures of different faces from only the current members of the team. True/False?
-19. 	> False
+	> False
 20. The upper and lower networks share parameters to have a consistent encoding for both images. True/False?
-21. 	> True
+	> True
 22. In neural style transfer, we train the pixels of an image, and not the parameters of a network.
-23. 	> True
+	> True
 24. In the deeper layers of a ConvNet, each channel corresponds to a different feature detector. The style matrix G [l] measures the degree to which the activations of different feature detectors in layer l vary (or correlate) together with each other.
-25. 	> True
-26. 	
+ 	> True
+ 	
