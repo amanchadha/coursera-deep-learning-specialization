@@ -433,8 +433,6 @@ def convolutional_model(input_shape):
     F = tf.keras.layers.Flatten()(P2)
     outputs = tf.keras.layers.Dense(units=6, activation='softmax')(F)
 
-    model = tf.keras.Model(inputs=input_img, outputs=outputs)
-    return model
     # YOUR CODE ENDS HERE
     model = tf.keras.Model(inputs=input_img, outputs=outputs)
     return model
