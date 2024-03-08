@@ -93,3 +93,45 @@ a[l+2]=g(W[l+2]g(W[l+1]a[l]+b[l+1])+bl+2+_______ )+_______
 	The same techniques for winning computer vision competitions, such as using multiple crops at test time, are widely used in practical deployments (or production system deployments) of ConvNets.
 
 	> Parameters trained for one computer vision task are often useful as pretraining for other computer vision tasks.
+ >
+11. Mobile V2 Bottleneck question
+
+ 	> W =5, Y = 30, Z= 20
+  
+12. Which of the following true about Depth-wise separable convolutions ?
+    
+ 	> 1. They have lower computation cost than normal convolutions. 2. They combile depthwise convolutions with pointwise convolutions
+    
+15. Which of the following about inception networks are tru ?
+
+  	> 1. A single inception allows the network to use a combination of 1 x 1, 3 x 3, 5 x 5 convolutions and pooling. 2. Inception blocks use 1 X 1 convolutions to reduce the input data 3. Making an inception network deeper will lead to overfitting and computational costs.
+16. Suppose that in a MobileNet v2 Bottleneck block the input volume has shape 64 × 64 × 16 64 × 64 × 16. If we use 32 filters for the expansion and 16 filters for the projection. What is the size of the input and output volume of the depthwise convolution, assuming a pad='same'?
+
+      > 64 x 64 x 32    64 x 64 x 32
+
+17. In Depthwise separable convolution:
+
+ 	> 1. perform two steps of convolution 2.The final output is of the dimension n_out x n_out x n_c(hat) 3.For Depthwise computation, each filter convolves with one color channel of input image 4. You convolve the input image with n_c number of n_f x n_f filters.
+
+18.When having a small training set to construct a classification model, which of the following is a strategy of transfer learning that you would use to build the model?
+
+	> Use an open-source network trained in larger dataset, freezing the layers, re-train the softmax layer
+ 
+
+20. 1 x 1 convolutions are the same as multiplying by a single number. True/False?
+
+ 	> False
+
+22. Adding a ResNet block to the end of a network makes it deeper. Which of the following is true?
+
+  	> The performance of the networks doesn't get hurt since the Resnet block can easily approximate identity function
+
+24. The computation of a ResNet block is expressed in the equation. Which part corresponds to the skip connection?
+
+  	> The term in the orange box marked as B.
+
+26. The motivation of Residual Networks is that very deep networks are so good at fitting complex functions that when training them we almost always overfit the training data. True/False?
+
+ 	> False
+
+28. 	

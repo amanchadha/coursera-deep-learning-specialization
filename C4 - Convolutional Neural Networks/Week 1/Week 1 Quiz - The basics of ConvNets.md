@@ -97,3 +97,30 @@
 	Each layer in a convolutional network is connected only to two other layers
 
 	Regularization causes gradient descent to set many of the parameters to zero.
+
+11. Suppose your input is a 256 by 256 grayscale image, and you use a convolutional layer with 128 filters that are each 3×3. How many parameters does this hidden layer have (including the bias parameters)?
+
+ 	> 1280
+
+13. You have an input volume that is 127×127×16, and convolve it with 32 filters of 5×5, using a stride of 2 and no padding. What is the output volume?
+
+  	> 62 x 62 x 32
+
+15. You have an input volume that is 31x31x32, and pad it using “pad=1”. What is the dimension of the resulting volume (after padding)?
+
+  	> 33 x 33 x 32
+
+17. Which of the following are hyperparameters of the pooling layers?
+
+  	> 1. Stride 2. Whether it is max or average
+
+19.Which of the following are the benefits of using convolutional layers?
+
+	> 1. Convolution layers are good 2. It reduces total number of parameters
+20. The following image depicts the result of a convolution at the right when using a stride of 1 and the filter is shown right next.On which pixels does the circled pixel of the activation at the right depend?
+
+      	> Depends on the green square
+
+22.
+
+
