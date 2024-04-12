@@ -69,6 +69,11 @@ def get_colors_for_classes(num_classes):
     get_colors_for_classes.colors = colors  # Save colors for future calls.
     return colors
 
+def textsize(text, font):
+    im = Image.new(mode="P", size=(0, 0))
+    draw = ImageDraw.Draw(im)
+    _, _, width, height = draw.textbbox((0, 0), text=text, font=font)
+    return width, height
 
 def draw_boxes(image, boxes, box_classes, class_names, scores=None):
     """Draw bounding boxes on image.
@@ -106,7 +111,7 @@ def draw_boxes(image, boxes, box_classes, class_names, scores=None):
             label = '{}'.format(box_class)
 
         draw = ImageDraw.Draw(image)
-        label_size = draw.textsize(label, font)
+        label_size = textsize(label, font)
 
         top, left, bottom, right = box
         top = max(0, np.floor(top + 0.5).astype('int32'))
