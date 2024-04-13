@@ -43,19 +43,30 @@
 
 	> ```30 * 30 * 30 * 32```
 
-11. You are working with 3D data. The input image has 64X64X64X3. if you apply convolution layer with 16 filters of size 4x 4 x 4, zero padding and size 2. What is the out put volume ?
+11. You are working with 3D data. The input image has 64 X 64 X 64 X 3. if you apply convolution layer with 16 filters of size 4x 4 x 4, zero padding and size 2. What is the out put volume ?
 	> 31 x 31 x 31 x 16
 
 12. In neural style transfer, which of the following better express the gradients used?
-
-     	>  dW/ dG
-14. Neural style transfer uses images Content C, styles S, The loss function used to generate image G is composed of which of the following "
+	>  dW/ dG
+13. Neural style transfer uses images Content C, styles S, The loss function used to generate image G is composed of which of the following "
 
  	> J(style) that compares S and g.
   	> J(content) that compares C and G
-16. Triplet los is larger in which of the following cases?
+14. Triplet los is larger in which of the following cases?
 
  	> When the encoding of A is closer to the encoding of N, than to the encoding of P
-18. Which of the folowing do you agree with ?
+15. You want to build a system that receives a person's face picture and determines if the person is inside a workgroup. You have pictures of all the faces of the people currently in the workgroup, but some members might leave, and some new members might be added.Which of the folowing do you agree with ?
+
     	> It will be more efficient to learn a function d(img1, img2) for this task.
     	> This can be considered a one-shot learning task
+16. Which of the following do you agree with?
+	>  Face recognition requires K comparisons of a persons face
+18. You want to build a system that receives a person's face picture and determines if the person is inside a workgroup. You have pictures of all the faces of the people currently in the workgroup, but some members might leave, and some new members might be added. To train a system to solve this problem using the triplet loss you must collect pictures of different faces from only the current members of the team. True/False?
+	> False
+20. The upper and lower networks share parameters to have a consistent encoding for both images. True/False?
+	> True
+22. In neural style transfer, we train the pixels of an image, and not the parameters of a network.
+	> True
+24. In the deeper layers of a ConvNet, each channel corresponds to a different feature detector. The style matrix G [l] measures the degree to which the activations of different feature detectors in layer l vary (or correlate) together with each other.
+ 	> True
+ 	

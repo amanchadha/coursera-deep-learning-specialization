@@ -39,3 +39,48 @@
 10. Suppose you are using YOLO on a 19x19 grid, on a detection problem with 20 classes, and with 5 anchor boxes. During training, for each image you will need to construct an output volume y as the target value for the neural network; this corresponds to the last layer of the neural network. (y may include some “?”, or “don’t cares”). What is the dimension of this output volume?
 	
 	> 19x19x(5x25)
+
+11. The most adequate output for a network to do the required task is y=[p_c, b_x, b_y,b_h, b_w, c_1](Which of the following do you agree with the most?)
+    
+	> False, we don't need b_h, b_w  since the cans are all the same size.
+ 
+13. When building a neural network that inputs a picture of a person's face and outputs N landmarks on the face (assume that the input image contains exactly one face), which is true about y_hat(i)?
+ 
+	> y_hat(i) has a shape of (2N,1)
+ 
+14. Semantic segmentation can only be applied to classify pixels of images in a binary way as 1 or 0, according to whether they belong to a certain class or not. True/False?
+    
+ 	> False
+  
+16. Using the concept of Transpose Convolution, fill in the values of X, Y and Z below. (padding =1, stride =2),input = [1 2],[3 4] Filter= [1 0 -1], [1 0 -1], [1, 0 ,-1]
+    
+ 	> X =2 , Y =-6, Z=-4
+  
+18. When using the U-Net architecture with an input h X w X c,  where c denotes the number of channels, the output will always have the shape h X W X c ?
+	> False
+
+19. When using the U-Net architecture with an input h X w X c,  where c denotes the number of channels, the output will always have the shape h X W  ?
+	> False
+ 	>  The output of the U-Net architecture can be h × w × k, where k is the number of classes. The number of channels doesn't have to match between input and output.
+
+20. Which of the following do you agree about the use of anchor boxes of YOLO ?
+    
+ 	> Each object is assigned to the grid cell that contains the object midpoint
+ 	> Each object is assigned to an anchor box with the highest IoU inside the assigned cell.
+
+23. When trying to build a system that assigns a value of 1 to each pixel that is part of a tumor from a medical image taken from a patient. This is a problem of localisation ?
+    
+ 	> False
+  
+
+26. If we use anchor boxes in YOLO, we no longer need the cordinates of the bounding box. Since they are given by the cell position of the grid and anchor box selection.
+
+	 	> False
+
+28. 
+
+
+
+
+
+ 
